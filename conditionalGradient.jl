@@ -147,5 +147,7 @@ P(C,u,v,γ,it) = aproject(C,v,; pred = (x,g,s,i) -> stopping(γ*dot(u-x,u-x),x,g
 
 # For projecting onto a hyperplane, we just compute the exact projection, since it is straightforward.
 aproject(s::HalfSpace,y;x,pred) = project(s,y)
+aproject(s::Hyperplane,y;x,pred) = project(s,y)
 
 project(p::HalfSpace,x) = x∈p ? x : x + (p.b - p.a⋅x) * p.a/norm(p.a)
+project(p::Hyperplane,x) = x + (p.b - p.a⋅x) * p.a/norm(p.a)
